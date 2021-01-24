@@ -14,15 +14,15 @@ import OrderHistory from "./pages/OrderHistory";
 
 const client = new ApolloClient({
   request: (operation) => {
-    const token = localStorage.getItem('id_token');
+    const token = localStorage.getItem('id_token')
     operation.setContext({
       headers: {
         authorization: token ? `Bearer ${token}` : ''
       }
-    });
+    })
   },
   uri: '/graphql',
-});
+})
 
 function App() {
   return (
@@ -43,6 +43,7 @@ function App() {
         </div>
       </Router>
     </ApolloProvider>
+
   );
 }
 

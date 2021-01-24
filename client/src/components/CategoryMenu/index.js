@@ -1,12 +1,14 @@
 import React, { useEffect } from 'react';
 import { useQuery } from '@apollo/react-hooks';
+import { useStoreContext } from '../../utils/GlobalState';
 import { UPDATE_CATEGORIES, UPDATE_CURRENT_CATEGORY } from '../../utils/actions';
-import { QUERY_CATEGORIES } from "../../utils/queries";
-import { useStoreContext } from "../../utils/GlobalState";
+import { QUERY_CATEGORIES } from '../../utils/queries';
 
 function CategoryMenu() {
   const [state, dispatch] = useStoreContext();
+
   const { categories } = state;
+
   const { data: categoryData } = useQuery(QUERY_CATEGORIES);
 
   useEffect(() => {
