@@ -1,8 +1,9 @@
 import React from 'react';
-import { useStoreContext } from '../../utils/GlobalState';
-import { REMOVE_FROM_CART, UPDATE_CART_QUANTITY } from '../../utils/actions';
+import { useStoreContext } from "../../utils/GlobalState";
+import { REMOVE_FROM_CART, UPDATE_CART_QUANTITY } from "../../utils/actions";
 
 const CartItem = ({ item }) => {
+
   const [, dispatch] = useStoreContext();
 
   const removeFromCart = item => {
@@ -14,7 +15,6 @@ const CartItem = ({ item }) => {
 
   const onChange = (e) => {
     const value = e.target.value;
-
     if (value === '0') {
       dispatch({
         type: REMOVE_FROM_CART,
@@ -27,7 +27,7 @@ const CartItem = ({ item }) => {
         purchaseQuantity: parseInt(value)
       });
     }
-  };
+  }
 
   return (
     <div className="flex-row">
@@ -47,11 +47,17 @@ const CartItem = ({ item }) => {
             value={item.purchaseQuantity}
             onChange={onChange}
           />
-          <span role="img" aria-label="trash" onClick={() => removeFromCart(item)}>🗑️</span>
+          <span
+            role="img"
+            aria-label="trash"
+            onClick={() => removeFromCart(item)}
+          >
+            🗑️
+          </span>
         </div>
       </div>
     </div>
   );
-};
+}
 
 export default CartItem;

@@ -1,9 +1,9 @@
-import React from 'react';
-import CartItem from '../CartItem';
-import Auth from '../../utils/auth';
-import { useStoreContext } from '../../utils/GlobalState';
-import { TOGGLE_CART } from '../../utils/actions';
-import './style.css';
+import React from "react";
+import CartItem from "../CartItem";
+import Auth from "../../utils/auth";
+import { useStoreContext } from "../../utils/GlobalState";
+import { TOGGLE_CART } from "../../utils/actions";
+import "./style.css";
 
 const Cart = () => {
   const [state, dispatch] = useStoreContext();
@@ -39,11 +39,15 @@ const Cart = () => {
           {state.cart.map(item => (
             <CartItem key={item._id} item={item} />
           ))}
+
           <div className="flex-row space-between">
             <strong>Total: ${calculateTotal()}</strong>
+
             {
               Auth.loggedIn() ?
-                <button>Checkout</button>
+                <button>
+                  Checkout
+              </button>
                 :
                 <span>(log in to check out)</span>
             }
@@ -51,8 +55,10 @@ const Cart = () => {
         </div>
       ) : (
           <h3>
-            <span role="img" aria-label="shocked">😱</span>
-            You haven't added anything to your cart yet!
+            <span role="img" aria-label="shocked">
+              😱
+          </span>
+          You haven't added anything to your cart yet!
           </h3>
         )}
     </div>
