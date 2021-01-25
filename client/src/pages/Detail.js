@@ -12,7 +12,7 @@ import {
 } from "../utils/actions";
 import { QUERY_PRODUCTS } from "../utils/queries";
 import { idbPromise } from "../utils/helpers";
-import spinner from '../assets/spinner.gif';
+import spinner from '../assets/spinner.gif'
 
 function Detail() {
   const [state, dispatch] = useStoreContext();
@@ -28,7 +28,7 @@ function Detail() {
     // already in global store
     if (products.length) {
       setCurrentProduct(products.find(product => product._id === id));
-    }
+    } 
     // retrieved from server
     else if (data) {
       dispatch({
@@ -52,15 +52,13 @@ function Detail() {
   }, [products, data, loading, dispatch, id]);
 
   const addToCart = () => {
-    const itemInCart = cart.find((cartItem) => cartItem._id === id);
-
+    const itemInCart = cart.find((cartItem) => cartItem._id === id)
     if (itemInCart) {
       dispatch({
         type: UPDATE_CART_QUANTITY,
         _id: id,
         purchaseQuantity: parseInt(itemInCart.purchaseQuantity) + 1
       });
-
       idbPromise('cart', 'put', {
         ...itemInCart,
         purchaseQuantity: parseInt(itemInCart.purchaseQuantity) + 1
@@ -70,10 +68,10 @@ function Detail() {
         type: ADD_TO_CART,
         product: { ...currentProduct, purchaseQuantity: 1 }
       });
-
       idbPromise('cart', 'put', { ...currentProduct, purchaseQuantity: 1 });
+
     }
-  };
+  }
 
   const removeFromCart = () => {
     dispatch({
@@ -105,8 +103,8 @@ function Detail() {
             <button onClick={addToCart}>
               Add to Cart
             </button>
-            <button
-              disabled={!cart.find(p => p._id === currentProduct._id)}
+            <button 
+              disabled={!cart.find(p => p._id === currentProduct._id)} 
               onClick={removeFromCart}
             >
               Remove from Cart

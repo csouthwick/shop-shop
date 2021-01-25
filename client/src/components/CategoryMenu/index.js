@@ -18,6 +18,9 @@ function CategoryMenu() {
         type: UPDATE_CATEGORIES,
         categories: categoryData.categories
       });
+      categoryData.categories.forEach(category => {
+        idbPromise('categories', 'put', category);
+      });
     } else if (!loading) {
       idbPromise('categories', 'get').then(categories => {
         dispatch({
@@ -32,9 +35,6 @@ function CategoryMenu() {
     dispatch({
       type: UPDATE_CURRENT_CATEGORY,
       currentCategory: id
-    });
-    categoryData.categories.forEach(category => {
-      idbPromise('categories', 'put', category);
     });
   };
 
